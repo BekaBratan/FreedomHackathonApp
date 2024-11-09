@@ -15,9 +15,9 @@ class HomeViewModel: ViewModel() {
 
     private val apiService = ServiceBuilder.buildService(ApiService::class.java)
 
-    fun getResponse() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _response.value = apiService.getProducts().toString()
-        }
-    }
+//    fun getResponse() {
+//        viewModelScope.launch(Dispatchers.IO) {
+//            _response.value = apiService.getProducts().toString()
+//        }
+//    }
 }

@@ -4,13 +4,20 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:padding="8dp">
+    android:background="@drawable/sh_card"
+    android:backgroundTint="@color/colorPrimary"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="8dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="12dp">
 
     <TextView
         android:id="@+id/tvRequirement"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textSize="16sp"
+        android:textColor="@color/white"
         android:text="Requirement"/>
 
     <ImageButton

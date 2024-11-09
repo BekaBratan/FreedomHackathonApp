@@ -11,16 +11,16 @@ import com.example.freedomhackathonapp.domain.SearchResponse
 
 class RequirementsAdapter: RecyclerView.Adapter<RequirementsAdapter.MyViewHolder>() {
 
-    private val diffCallback = object : DiffUtil.ItemCallback<SearchResponse>() {
+    private val diffCallback = object : DiffUtil.ItemCallback<String>() {
         override fun areItemsTheSame(
-            oldItem: SearchResponse,
-            newItem: SearchResponse
+            oldItem: String,
+            newItem: String
         ): Boolean {
             return oldItem == newItem
         }
         override fun areContentsTheSame(
-            oldItem: SearchResponse,
-            newItem: SearchResponse
+            oldItem: String,
+            newItem: String
         ): Boolean {
             return oldItem == newItem
         }
@@ -28,7 +28,7 @@ class RequirementsAdapter: RecyclerView.Adapter<RequirementsAdapter.MyViewHolder
     }
     private val differ = AsyncListDiffer(this, diffCallback)
 
-    fun submitList(list: List<SearchResponse>) {
+    fun submitList(list: List<String>) {
         differ.submitList(list.toMutableList())
     }
 
