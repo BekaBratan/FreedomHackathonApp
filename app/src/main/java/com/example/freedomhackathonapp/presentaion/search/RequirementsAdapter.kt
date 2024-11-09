@@ -18,7 +18,6 @@ class RequirementsAdapter: RecyclerView.Adapter<RequirementsAdapter.MyViewHolder
         ): Boolean {
             return oldItem == newItem
         }
-
         override fun areContentsTheSame(
             oldItem: SearchResponse,
             newItem: SearchResponse
