@@ -29,6 +29,8 @@ class ResultFragment : Fragment() {
         val adapterResults = ResultAdapter()
         binding.rcResults.adapter = adapterResults
 
+
+//
 //        viewModel.response.observe(viewLifecycleOwner, {
 //            adapterResults.submitList(it.result[0].candidates)
 //        })

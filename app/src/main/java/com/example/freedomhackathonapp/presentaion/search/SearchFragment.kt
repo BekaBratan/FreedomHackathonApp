@@ -40,17 +40,24 @@ class SearchFragment : Fragment() {
             }
 
             btnSearch.setOnClickListener{
-                viewModel.fetch("python")
+                viewModel.fetch("python developer")
+//                viewModel.getEmpty()
 //                findNavController().navigate(R.id.action_searchFragment_to_resultFragment)
             }
 
-            viewModel.response.observe(viewLifecycleOwner, {
+            viewModel.response.observe(viewLifecycleOwner) {
                 // print in log
                 Log.d("AAA", "it.toString()")
 
                 Log.d("AAA", it.toString())
-            })
+            }
 
+//            viewModel.empty.observe(viewLifecycleOwner) {
+//                // print in log
+//                Log.d("AAA", "it.toString()")
+//
+//                Log.d("AAA", it.toString())
+//            }
         }
 
 
