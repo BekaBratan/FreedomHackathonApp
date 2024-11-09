@@ -1,11 +1,20 @@
 package com.example.freedomhackathonapp.presentaion.search
 
+import android.annotation.SuppressLint
+import android.app.DownloadManager
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +23,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.freedomhackathonapp.R
 import com.example.freedomhackathonapp.databinding.FragmentSearchBinding
+import java.io.File
 
 class SearchFragment : Fragment() {
 
@@ -43,6 +53,8 @@ class SearchFragment : Fragment() {
             }
 
             btnSearch.setOnClickListener{
+                downloadPdf(requireContext(), "http://10.0.2.2:8000/Резюме_Mobile_developer_Assanalikhan_Mamyrov_от_21_10_2024_15_43.pdf", "sample")
+
                 var prompt = etSpecialization.text.toString()
                 val requirements = adapterRequirements.getItems().joinToString("; ")
                 if (requirements.isNotEmpty()) {
@@ -59,12 +71,24 @@ class SearchFragment : Fragment() {
                 llResults.visibility = View.VISIBLE
                 val adapterResults = ResultAdapter()
                 binding.rcResults.adapter = adapterResults
-                adapterResults.submitList(it.result)
+                adapterResults.submitList(it)
             }
-
         }
+    }
 
+    fun downloadPdf(context: Context, url: String, fileName: String) {
+        val request = DownloadManager.Request(Uri.parse(url))
+            .setTitle("Downloading PDF...")
+            .setDescription("Downloading $fileName")
+            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            .setAllowedOverMetered(true)  // Allows download over mobile data
+            .setAllowedOverRoaming(false)  // Disables download when roaming
+            .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "$fileName.pdf")
 
+        val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        downloadManager.enqueue(request)
+
+        Toast.makeText(context, "Download started...", Toast.LENGTH_SHORT).show()
     }
 
 }
