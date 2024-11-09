@@ -37,13 +37,6 @@
             android:layout_height="wrap_content"
             android:text="Age: 20   City: Almaty" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcRequirements"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
-            android:orientation="horizontal"
-            tools:listitem="@layout/item_requirements" />
 
 
     </LinearLayout>

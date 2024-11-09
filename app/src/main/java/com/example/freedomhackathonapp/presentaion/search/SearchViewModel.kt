@@ -12,14 +12,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SearchViewModel: ViewModel() {
-    private val _response = MutableLiveData<List<SearchResponse>>()
-    val response: LiveData<List<SearchResponse>> get() = _response
+    private val _response = MutableLiveData<SearchResponse>()
+    val response: LiveData<SearchResponse> get() = _response
 
-    private val apiService = ServiceBuilder.buildService(ApiService::class.java)
 
     fun fetch(prompt: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            _response.value = apiService.search("$prompt")
+            runCatching { ServiceBuilder.api.search("$prompt") }.fold(
+                onSuccess = {
+                    _response.postValue(it)
+                },
+                onFailure = {
+                    it.printStackTrace()
+                }
+            )
         }
     }
 }

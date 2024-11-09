@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.freedomhackathonapp.databinding.ItemRequirementsBinding
 import com.example.freedomhackathonapp.databinding.ItemResultBinding
 import com.example.freedomhackathonapp.domain.SearchResponse
+import com.example.freedomhackathonapp.presentaion.RcViewItemClickIdCallback
 import okhttp3.Response
 
 class ResultAdapter: RecyclerView.Adapter<ResultAdapter.MyViewHolder>() {
@@ -34,13 +35,18 @@ class ResultAdapter: RecyclerView.Adapter<ResultAdapter.MyViewHolder>() {
         differ.submitList(list.toMutableList())
     }
 
+    private var listenerClickAtItem: RcViewItemClickIdCallback? = null
+    fun setOnItemClickListener(listener: RcViewItemClickIdCallback) {
+        this.listenerClickAtItem = listener
+    }
+
 
     inner class MyViewHolder(private var binding: ItemResultBinding): RecyclerView.ViewHolder(binding.root){
         fun onBind(item: SearchResponse.Result.Candidate){
             binding.tvName.text = item.content.toString()
             binding.tvDescription.text = item.finishReason
             itemView.setOnClickListener {
-
+                listenerClickAtItem?.onClick(item.index)
             }
         }
     }

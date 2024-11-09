@@ -14,5 +14,5 @@ interface ApiService {
     suspend fun getVacancy(): List<VacancyResponse>
 
     @GET("search")
-    suspend fun search(@Query("prompt") prompt: String): List<SearchResponse>
+    suspend fun search(@Query("prompt") prompt: String): SearchResponse
 }

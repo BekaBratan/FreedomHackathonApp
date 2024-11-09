@@ -1,18 +1,21 @@
 package com.example.freedomhackathonapp.presentaion.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.freedomhackathonapp.R
 import com.example.freedomhackathonapp.databinding.FragmentSearchBinding
 
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
-    private lateinit var viewModel: SearchViewModel
+    private val viewModel: SearchViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,8 +28,6 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
-
         binding.run {
 
             val adapterRequirements = RequirementsAdapter()
@@ -37,12 +38,17 @@ class SearchFragment : Fragment() {
                 adapterRequirements.addItem(etRequirement.text.toString())
                 etRequirement.text.clear()
             }
+
             btnSearch.setOnClickListener{
-                viewModel.fetch("") // TODO: add search query
+                viewModel.fetch("python")
+//                findNavController().navigate(R.id.action_searchFragment_to_resultFragment)
             }
 
             viewModel.response.observe(viewLifecycleOwner, {
-                adapterRequirements.submitList(it)
+                // print in log
+                Log.d("AAA", "it.toString()")
+
+                Log.d("AAA", it.toString())
             })
 
         }

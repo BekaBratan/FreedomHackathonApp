@@ -14,5 +14,13 @@
         android:id="@+id/searchFragment"
         android:name="com.example.freedomhackathonapp.presentaion.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.example.freedomhackathonapp.presentaion.search.ResultFragment"
+        android:label="ResultFragment" />
 </navigation>
