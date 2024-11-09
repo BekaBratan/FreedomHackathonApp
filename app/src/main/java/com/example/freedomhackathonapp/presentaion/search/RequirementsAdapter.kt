@@ -7,20 +7,21 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.freedomhackathonapp.databinding.ItemRequirementsBinding
+import com.example.freedomhackathonapp.domain.SearchResponse
 
 class RequirementsAdapter: RecyclerView.Adapter<RequirementsAdapter.MyViewHolder>() {
 
-    private val diffCallback = object : DiffUtil.ItemCallback<String>() {
+    private val diffCallback = object : DiffUtil.ItemCallback<SearchResponse>() {
         override fun areItemsTheSame(
-            oldItem: String,
-            newItem: String
+            oldItem: SearchResponse,
+            newItem: SearchResponse
         ): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: String,
-            newItem: String
+            oldItem: SearchResponse,
+            newItem: SearchResponse
         ): Boolean {
             return oldItem == newItem
         }
@@ -28,7 +29,7 @@ class RequirementsAdapter: RecyclerView.Adapter<RequirementsAdapter.MyViewHolder
     }
     private val differ = AsyncListDiffer(this, diffCallback)
 
-    fun submitList(list: List<String>) {
+    fun submitList(list: List<SearchResponse>) {
         differ.submitList(list.toMutableList())
     }
 

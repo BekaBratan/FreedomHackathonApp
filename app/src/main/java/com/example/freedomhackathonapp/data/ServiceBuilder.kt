@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceBuilder {
-    private const val BASE_URL = "" // url
+    private const val BASE_URL = "http://localhost:8000/search?prompt=" // url
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
