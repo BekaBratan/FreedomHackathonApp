@@ -14,16 +14,16 @@ import okhttp3.Response
 
 class ResultAdapter: RecyclerView.Adapter<ResultAdapter.MyViewHolder>() {
 
-    private val diffCallback = object : DiffUtil.ItemCallback<SearchResponse.Result.Candidate>() {
+    private val diffCallback = object : DiffUtil.ItemCallback<SearchResponse.Result>() {
         override fun areItemsTheSame(
-            oldItem: SearchResponse.Result.Candidate,
-            newItem: SearchResponse.Result.Candidate
+            oldItem: SearchResponse.Result,
+            newItem: SearchResponse.Result
         ): Boolean {
             return oldItem == newItem
         }
         override fun areContentsTheSame(
-            oldItem: SearchResponse.Result.Candidate,
-            newItem: SearchResponse.Result.Candidate
+            oldItem: SearchResponse.Result,
+            newItem: SearchResponse.Result
         ): Boolean {
             return oldItem == newItem
         }
@@ -31,7 +31,7 @@ class ResultAdapter: RecyclerView.Adapter<ResultAdapter.MyViewHolder>() {
     }
     private val differ = AsyncListDiffer(this, diffCallback)
 
-    fun submitList(list: List<SearchResponse.Result.Candidate>) {
+    fun submitList(list: List<SearchResponse.Result>) {
         differ.submitList(list.toMutableList())
     }
 
@@ -42,11 +42,10 @@ class ResultAdapter: RecyclerView.Adapter<ResultAdapter.MyViewHolder>() {
 
 
     inner class MyViewHolder(private var binding: ItemResultBinding): RecyclerView.ViewHolder(binding.root){
-        fun onBind(item: SearchResponse.Result.Candidate){
-            binding.tvName.text = item.content.toString()
-            binding.tvDescription.text = item.finishReason
+        fun onBind(item: SearchResponse.Result){
+            binding.tvDescription.text = item.candidates[0].content.parts[0].text
             itemView.setOnClickListener {
-                listenerClickAtItem?.onClick(item.index)
+                listenerClickAtItem?.onClick(item.candidates[0].index)
             }
         }
     }

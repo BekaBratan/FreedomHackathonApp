@@ -46,6 +46,10 @@ class RequirementsAdapter: RecyclerView.Adapter<RequirementsAdapter.MyViewHolder
         }
     }
 
+    fun getItems(): List<String> {
+        return differ.currentList
+    }
+
     inner class MyViewHolder(private var binding: ItemRequirementsBinding): RecyclerView.ViewHolder(binding.root){
         fun onBind(item: String){
             binding.tvRequirement.text = item
