@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.freedomhackathonapp.databinding.ItemRequirementsBinding
-import com.example.freedomhackathonapp.domain.SearchResponse
 
 class RequirementsAdapter: RecyclerView.Adapter<RequirementsAdapter.MyViewHolder>() {
 

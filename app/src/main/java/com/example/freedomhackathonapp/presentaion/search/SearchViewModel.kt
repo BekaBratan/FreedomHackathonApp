@@ -19,6 +19,9 @@ class SearchViewModel: ViewModel() {
     private val _empty = MutableLiveData<HelloWorldResponse>()
     val empty: LiveData<HelloWorldResponse> get() = _empty
 
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> get() = _error
+
 
     fun fetch(prompt: String) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -27,7 +30,7 @@ class SearchViewModel: ViewModel() {
                     _response.postValue(it)
                 }
                 .onFailure {
-                    it.printStackTrace()
+                    _error.postValue(it.message)
                 }
         }
     }
@@ -39,7 +42,7 @@ class SearchViewModel: ViewModel() {
                     _empty.postValue(it)
                 }
                 .onFailure {
-                    it.printStackTrace()
+                    _error.postValue(it.message)
                 }
         }
     }
