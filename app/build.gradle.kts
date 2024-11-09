@@ -71,4 +71,7 @@ dependencies {
 
     // Flexbox
     implementation("com.google.android.flexbox:flexbox:3.0.0")
+
+    // add the dependency for the Google AI client SDK for Android
+    implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
 }
