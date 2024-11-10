@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:text="Абай Кунанбай"
-        android:textStyle="bold"
+        android:fontFamily="@font/sfprotextbold"
         android:layout_marginStart="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -80,6 +80,7 @@
             android:id="@+id/tvCountry"
             android:textSize="12sp"
             android:textColor="@color/gray"
+            android:fontFamily="@font/sfprodisplayregular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Казахстан, Алматы" />
@@ -103,7 +104,9 @@
             android:id="@+id/tvHighSkills"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="4"
+            android:maxLines="1"
+            android:layout_marginStart="2dp"
+            android:fontFamily="@font/sfprodisplaymedium"
             android:layout_weight="1"
             android:text="Python, Django, REST API, Docker, PostgreSQL" />
         </LinearLayout>

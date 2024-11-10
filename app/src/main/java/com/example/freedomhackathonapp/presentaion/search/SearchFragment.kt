@@ -12,6 +12,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.freedomhackathonapp.R
+import androidx.navigation.fragment.findNavController
+import com.example.freedomhackathonapp.data.SharedProvider
 import com.example.freedomhackathonapp.databinding.FragmentSearchBinding
 import com.example.freedomhackathonapp.domain.RcViewItemClickLinkCallback
 
@@ -66,7 +69,8 @@ class SearchFragment : Fragment() {
                 adapterResults.submitList(it.data)
                 adapterResults.setOnItemClickListener(object : RcViewItemClickLinkCallback {
                     override fun onClick(link: String) {
-                        downloadPdf(requireContext(), "http://10.0.2.2:8000${link}", "sample")
+                        SharedProvider(requireContext()).saveUser(it.data.first { it.resumeLink == link })
+                        findNavController().navigate(R.id.action_searchFragment_to_detailFragment)
                     }
                 })
             }

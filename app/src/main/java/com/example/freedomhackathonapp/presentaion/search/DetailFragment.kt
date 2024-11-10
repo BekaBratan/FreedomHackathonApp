@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.example.freedomhackathonapp.R
 import com.example.freedomhackathonapp.data.SharedProvider
 import com.example.freedomhackathonapp.databinding.FragmentDetailBinding
@@ -33,6 +34,11 @@ class DetailFragment : Fragment() {
         binding.run {
 
             val user = SharedProvider(requireContext()).getUser()
+
+            btnBack.setOnClickListener {
+                SharedProvider(requireContext()).clearShared()
+                findNavController().navigateUp()
+            }
 
             tvName.text = user.fullName
             tvBirthDate.text = user.birthDate

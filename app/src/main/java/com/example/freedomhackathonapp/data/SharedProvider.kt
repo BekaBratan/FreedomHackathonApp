@@ -31,15 +31,15 @@ class SharedProvider(private val context: Context) {
 
     fun getUser(): NewSearchResponse.Data {
         return NewSearchResponse.Data(
-            preferences.getString("fullName", "no name").toString(),
-            preferences.getString("birthDate", "no date").toString(),
-            preferences.getString("country", "no country").toString(),
-            preferences.getString("education", "no education").toString(),
-            preferences.getString("experience", "no experience").toString(),
-            preferences.getString("highSkills", "no skills").toString(),
-            preferences.getString("conformityAssessment", "no assessment").toString(),
-            preferences.getString("percentAppropriate", "no percent").toString(),
-            preferences.getString("resumeLink", "no link").toString()
+            fullName = preferences.getString("fullName", "no name").toString(),
+            birthDate = preferences.getString("birthDate", "no date").toString(),
+            country = preferences.getString("country", "no country").toString(),
+            education = preferences.getString("education", "no education").toString(),
+            experience = preferences.getString("experience", "no experience").toString(),
+            highSkills = preferences.getString("highSkills", "no skills").toString(),
+            conformityAssessment = preferences.getString("conformityAssessment", "no assessment").toString(),
+            percentAppropriate = preferences.getString("percentAppropriate", "no percent").toString(),
+            resumeLink = preferences.getString("resumeLink", "no link").toString()
         )
     }
 }

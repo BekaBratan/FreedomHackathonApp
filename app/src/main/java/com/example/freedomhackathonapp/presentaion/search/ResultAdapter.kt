@@ -66,6 +66,10 @@ class ResultAdapter : RecyclerView.Adapter<ResultAdapter.MyViewHolder>() {
             binding.circularProgressIndicator.progress =
                 item.percentAppropriate.toString().replace("%", "").toInt()
             binding.tvPercentAppropriate.text = item.percentAppropriate.toString()
+
+            itemView.setOnClickListener {
+                listenerClickAtItem?.onClick(item.resumeLink)
+            }
         }
     }
 

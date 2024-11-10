@@ -8,6 +8,14 @@
     android:paddingVertical="16dp"
     tools:context=".presentaion.search.DetailFragment">
 
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvPercentAppropriate"
         android:layout_width="wrap_content"
