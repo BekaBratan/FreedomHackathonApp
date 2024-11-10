@@ -11,7 +11,7 @@ import com.example.freedomhackathonapp.databinding.ItemResultBinding
 import com.example.freedomhackathonapp.domain.NewSearchResponse
 import com.example.freedomhackathonapp.domain.RcViewItemClickLinkCallback
 
-class ResultAdapter: RecyclerView.Adapter<ResultAdapter.MyViewHolder>() {
+class ResultAdapter : RecyclerView.Adapter<ResultAdapter.MyViewHolder>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<NewSearchResponse.Data>() {
         override fun areItemsTheSame(
@@ -20,6 +20,7 @@ class ResultAdapter: RecyclerView.Adapter<ResultAdapter.MyViewHolder>() {
         ): Boolean {
             return oldItem == newItem
         }
+
         override fun areContentsTheSame(
             oldItem: NewSearchResponse.Data,
             newItem: NewSearchResponse.Data
@@ -39,29 +40,32 @@ class ResultAdapter: RecyclerView.Adapter<ResultAdapter.MyViewHolder>() {
         this.listenerClickAtItem = listener
     }
 
-
-    inner class MyViewHolder(private var binding: ItemResultBinding): RecyclerView.ViewHolder(binding.root){
-        fun onBind(item: NewSearchResponse.Data){
+    inner class MyViewHolder(private var binding: ItemResultBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun onBind(item: NewSearchResponse.Data) {
             binding.tvName.text = item.fullName
-            binding.tvBirthDate.text = item.birthDate
             binding.tvCountry.text = item.country
-            binding.tvEducation.text = item.education
-
-            binding.tvExperience.text = item.experience
             binding.tvHighSkills.text = item.highSkills
 
             if (item.conformityAssessment == "Подходит") {
-                binding.circularProgressIndicator.setIndicatorColor(ContextCompat.getColor(itemView.context, R.color.green))
+                binding.circularProgressIndicator.setIndicatorColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.green
+                    )
+                )
             } else {
-                binding.circularProgressIndicator.setIndicatorColor(ContextCompat.getColor(itemView.context, R.color.red))
+                binding.circularProgressIndicator.setIndicatorColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.red
+                    )
+                )
             }
 
-            binding.circularProgressIndicator.progress = item.percentAppropriate.toString().replace("%", "").toInt()
+            binding.circularProgressIndicator.progress =
+                item.percentAppropriate.toString().replace("%", "").toInt()
             binding.tvPercentAppropriate.text = item.percentAppropriate.toString()
-
-            binding.btnDownload.setOnClickListener {
-                listenerClickAtItem?.onClick(item.resumeLink)
-            }
         }
     }
 

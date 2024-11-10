@@ -1,11 +1,7 @@
 package com.example.freedomhackathonapp.presentaion.search
 
-import android.annotation.SuppressLint
 import android.app.DownloadManager
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -14,17 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavOptions
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
-import com.example.freedomhackathonapp.R
 import com.example.freedomhackathonapp.databinding.FragmentSearchBinding
 import com.example.freedomhackathonapp.domain.RcViewItemClickLinkCallback
-import java.io.File
 
 class SearchFragment : Fragment() {
 
@@ -53,9 +42,7 @@ class SearchFragment : Fragment() {
                 etRequirement.text.clear()
             }
 
-            btnSearch.setOnClickListener{
-//                downloadPdf(requireContext(), "http://10.0.2.2:8000/static/resumes/Резюме_Mobile_developer_Assanalikhan_Mamyrov_от_21_10_2024_15_43.pdf", "sample")
-
+            btnSearch.setOnClickListener {
                 var vacancy = etSpecialization.text.toString()
                 val requirements = adapterRequirements.getItems().joinToString("; ")
                 if (requirements.isNotEmpty()) {
@@ -65,12 +52,16 @@ class SearchFragment : Fragment() {
                 viewModel.fetch(vacancy)
                 llSearch.visibility = View.GONE
                 llProgress.visibility = View.VISIBLE
+                btnBack.visibility = View.VISIBLE
             }
 
             viewModel.response.observe(viewLifecycleOwner) {
                 llProgress.visibility = View.GONE
                 llResults.visibility = View.VISIBLE
+                vDivider.visibility = View.VISIBLE
+                tvResult.visibility = View.VISIBLE
                 val adapterResults = ResultAdapter()
+                binding.tvResult.text = etSpecialization.text.toString()
                 binding.rcResults.adapter = adapterResults
                 adapterResults.submitList(it.data)
                 adapterResults.setOnItemClickListener(object : RcViewItemClickLinkCallback {
@@ -78,6 +69,14 @@ class SearchFragment : Fragment() {
                         downloadPdf(requireContext(), "http://10.0.2.2:8000${link}", "sample")
                     }
                 })
+            }
+
+            btnBack.setOnClickListener {
+                llResults.visibility = View.GONE
+                vDivider.visibility = View.GONE
+                tvResult.visibility = View.GONE
+                llSearch.visibility = View.VISIBLE
+                btnBack.visibility = View.GONE
             }
         }
     }

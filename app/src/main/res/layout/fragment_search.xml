@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingVertical="36dp"
-    android:paddingHorizontal="24dp"
+    android:paddingHorizontal="16dp"
     tools:context=".presentaion.search.SearchFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/llSearch"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,64 +18,66 @@
             android:id="@+id/etSpecialization"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Write specialization"
+            android:layout_marginTop="80dp"
             android:background="@drawable/sh_search"
-            android:paddingVertical="8dp"
-            android:paddingHorizontal="12dp"
+            android:hint="Write specialization"
             android:inputType="text"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/etRequirement"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Requirement"
-            android:background="@drawable/sh_search"
-            android:paddingVertical="8dp"
-            android:paddingHorizontal="12dp"
-            android:inputType="text"
             android:layout_marginTop="12dp"
+            android:background="@drawable/sh_search"
+            android:hint="Requirement"
+            android:inputType="text"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
             app:layout_constraintEnd_toStartOf="@+id/btnAdd"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etSpecialization"/>
+            app:layout_constraintTop_toBottomOf="@+id/etSpecialization" />
 
         <ImageButton
             android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_plus"
-            android:padding="8dp"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:background="@drawable/sh_card"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/etSpecialization"
+            android:background="@drawable/sh_card"
+            android:padding="8dp"
+            android:src="@drawable/ic_plus"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/etRequirement" />
+            app:layout_constraintStart_toEndOf="@+id/etRequirement"
+            app:layout_constraintTop_toBottomOf="@+id/etSpecialization" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcRequirements"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
-            android:orientation="horizontal"
-            tools:listitem="@layout/item_requirements"
             android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/btnSearch"
-            app:layout_constraintTop_toBottomOf="@+id/etRequirement"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etRequirement"
+            tools:listitem="@layout/item_requirements" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/sh_card"
             android:text="Search"
             android:textColor="@color/white"
-            android:background="@drawable/sh_card"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -83,62 +86,86 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llProgress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        android:id="@+id/llProgress">
+        android:visibility="gone">
 
         <ProgressBar
+            android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/progressBar"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/loadingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:text="Loading..."
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_marginStart="-16dp"
+        android:visibility="gone"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Result"
+        android:visibility="gone"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"/>
+
+    <View
+        android:id="@+id/vDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:visibility="gone"
+        android:background="@color/gray"
+        app:layout_constraintTop_toBottomOf="@id/btnBack" />
+
     <ScrollView
         android:id="@+id/llResults"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/vDivider"
         tools:context=".presentaion.search.SearchFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tvResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Result"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcResults"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_result"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvResult"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_result" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
