@@ -54,8 +54,20 @@ class ResultAdapter : RecyclerView.Adapter<ResultAdapter.MyViewHolder>() {
                         R.color.green
                     )
                 )
+                binding.tvPercentAppropriate.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.green
+                    )
+                )
             } else {
                 binding.circularProgressIndicator.setIndicatorColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.red
+                    )
+                )
+                binding.tvPercentAppropriate.setTextColor(
                     ContextCompat.getColor(
                         itemView.context,
                         R.color.red

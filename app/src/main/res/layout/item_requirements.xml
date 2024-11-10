@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:gravity="center_vertical"
     android:background="@drawable/sh_card"
-    android:backgroundTint="@color/green"
+    android:backgroundTint="@color/white"
     android:paddingHorizontal="12dp"
     android:paddingVertical="8dp"
     android:layout_marginEnd="10dp"
@@ -16,16 +16,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="16sp"
-        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:fontFamily="@font/sfprodisplayregular"
+        android:textColor="@color/green"
         android:text="Requirement"/>
 
     <ImageButton
         android:id="@+id/ibCancel"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/ic_cross"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_cross"
         android:layout_marginStart="8dp"
-        android:background="@null"/>
+        android:backgroundTint="@color/green"/>
 
 </LinearLayout>

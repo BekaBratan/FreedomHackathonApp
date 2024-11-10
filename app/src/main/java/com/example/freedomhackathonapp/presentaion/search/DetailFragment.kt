@@ -47,8 +47,10 @@ class DetailFragment : Fragment() {
 
             if (user.conformityAssessment == "Подходит") {
                 binding.circularProgressIndicator.setIndicatorColor(ContextCompat.getColor(requireContext(), R.color.green))
+                binding.tvPercentAppropriate.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
             } else {
                 binding.circularProgressIndicator.setIndicatorColor(ContextCompat.getColor(requireContext(), R.color.red))
+                binding.tvPercentAppropriate.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
             }
 
             tvPercentAppropriate.text = user.percentAppropriate
