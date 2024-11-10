@@ -9,6 +9,37 @@ class SharedProvider(private val context: Context) {
     private val preferences: SharedPreferences
         get() = context.getSharedPreferences("User", Context.MODE_PRIVATE)
 
+    private val search: SharedPreferences
+        get() = context.getSharedPreferences("Search", Context.MODE_PRIVATE)
+
+    fun saveSearch(search: String, specialization: String, from: String) {
+        val sharedPref = context.getSharedPreferences("Search", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putString("search", search)
+        editor.putString("specialization", specialization)
+        editor.putString("from", from)
+        editor.apply()
+    }
+
+    fun setFrom(from: String) {
+        val sharedPref = context.getSharedPreferences("Search", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putString("from", from)
+        editor.apply()
+    }
+
+    fun getFrom(): String {
+        return search.getString("from", "no from").toString()
+    }
+
+    fun getSearch(): String {
+        return search.getString("search", "no search").toString()
+    }
+
+    fun getSpecialization(): String {
+        return search.getString("specialization", "no specialization").toString()
+    }
+
     fun clearShared() {
         preferences.edit().clear().apply()
     }
