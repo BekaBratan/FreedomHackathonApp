@@ -1,6 +1,7 @@
 package com.example.freedomhackathonapp.data
 
 import com.example.freedomhackathonapp.domain.HelloWorldResponse
+import com.example.freedomhackathonapp.domain.NewSearchResponse
 import com.example.freedomhackathonapp.domain.SearchResponse
 import com.example.freedomhackathonapp.domain.VacancyResponse
 import okhttp3.ResponseBody
@@ -20,6 +21,6 @@ interface ApiService {
 
     @GET("/search")
     suspend fun search(
-        @Query("prompt") prompt: String
-    ): SearchResponse
+        @Query("vacancy") vacancy: String
+    ): NewSearchResponse
 }

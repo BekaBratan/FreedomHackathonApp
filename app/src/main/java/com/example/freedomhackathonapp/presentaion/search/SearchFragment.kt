@@ -23,6 +23,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.freedomhackathonapp.R
 import com.example.freedomhackathonapp.databinding.FragmentSearchBinding
+import com.example.freedomhackathonapp.domain.RcViewItemClickLinkCallback
 import java.io.File
 
 class SearchFragment : Fragment() {
@@ -53,15 +54,15 @@ class SearchFragment : Fragment() {
             }
 
             btnSearch.setOnClickListener{
-                downloadPdf(requireContext(), "http://10.0.2.2:8000/Резюме_Mobile_developer_Assanalikhan_Mamyrov_от_21_10_2024_15_43.pdf", "sample")
+//                downloadPdf(requireContext(), "http://10.0.2.2:8000/static/resumes/Резюме_Mobile_developer_Assanalikhan_Mamyrov_от_21_10_2024_15_43.pdf", "sample")
 
-                var prompt = etSpecialization.text.toString()
+                var vacancy = etSpecialization.text.toString()
                 val requirements = adapterRequirements.getItems().joinToString("; ")
                 if (requirements.isNotEmpty()) {
-                    prompt += ". Навыки: $requirements"
+                    vacancy += ". Навыки: $requirements"
                 }
-                Log.d("AAA", prompt)
-                viewModel.fetch(prompt)
+                Log.d("AAA", vacancy)
+                viewModel.fetch(vacancy)
                 llSearch.visibility = View.GONE
                 llProgress.visibility = View.VISIBLE
             }
@@ -71,7 +72,12 @@ class SearchFragment : Fragment() {
                 llResults.visibility = View.VISIBLE
                 val adapterResults = ResultAdapter()
                 binding.rcResults.adapter = adapterResults
-                adapterResults.submitList(it)
+                adapterResults.submitList(it.data)
+                adapterResults.setOnItemClickListener(object : RcViewItemClickLinkCallback {
+                    override fun onClick(link: String) {
+                        downloadPdf(requireContext(), "http://10.0.2.2:8000${link}", "sample")
+                    }
+                })
             }
         }
     }

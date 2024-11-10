@@ -6,6 +6,7 @@
     android:background="@drawable/sh_card"
     android:backgroundTint="@color/light_green"
     android:paddingVertical="12dp"
+    android:layout_marginVertical="10dp"
     android:paddingHorizontal="8dp">
 
 
