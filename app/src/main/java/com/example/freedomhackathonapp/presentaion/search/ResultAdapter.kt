@@ -8,21 +8,21 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.freedomhackathonapp.R
 import com.example.freedomhackathonapp.databinding.ItemResultBinding
-import com.example.freedomhackathonapp.domain.SearchResponseItem
-import com.example.freedomhackathonapp.presentaion.RcViewItemClickLinkCallback
+import com.example.freedomhackathonapp.domain.NewSearchResponse
+import com.example.freedomhackathonapp.domain.RcViewItemClickLinkCallback
 
 class ResultAdapter: RecyclerView.Adapter<ResultAdapter.MyViewHolder>() {
 
-    private val diffCallback = object : DiffUtil.ItemCallback<SearchResponseItem>() {
+    private val diffCallback = object : DiffUtil.ItemCallback<NewSearchResponse.Data>() {
         override fun areItemsTheSame(
-            oldItem: SearchResponseItem,
-            newItem: SearchResponseItem
+            oldItem: NewSearchResponse.Data,
+            newItem: NewSearchResponse.Data
         ): Boolean {
             return oldItem == newItem
         }
         override fun areContentsTheSame(
-            oldItem: SearchResponseItem,
-            newItem: SearchResponseItem
+            oldItem: NewSearchResponse.Data,
+            newItem: NewSearchResponse.Data
         ): Boolean {
             return oldItem == newItem
         }
@@ -30,7 +30,7 @@ class ResultAdapter: RecyclerView.Adapter<ResultAdapter.MyViewHolder>() {
     }
     private val differ = AsyncListDiffer(this, diffCallback)
 
-    fun submitList(list: List<SearchResponseItem>) {
+    fun submitList(list: List<NewSearchResponse.Data>) {
         differ.submitList(list.toMutableList())
     }
 
@@ -41,27 +41,26 @@ class ResultAdapter: RecyclerView.Adapter<ResultAdapter.MyViewHolder>() {
 
 
     inner class MyViewHolder(private var binding: ItemResultBinding): RecyclerView.ViewHolder(binding.root){
-        fun onBind(item: SearchResponseItem){
-            binding.tvName.text = item.full_name
-
-            binding.tvBirthDate.text = item.birth_date
+        fun onBind(item: NewSearchResponse.Data){
+            binding.tvName.text = item.fullName
+            binding.tvBirthDate.text = item.birthDate
             binding.tvCountry.text = item.country
             binding.tvEducation.text = item.education
 
             binding.tvExperience.text = item.experience
-            binding.tvHighSkills.text = item.high_skills
+            binding.tvHighSkills.text = item.highSkills
 
-            if (item.conformity_assessment == "Подходит") {
+            if (item.conformityAssessment == "Подходит") {
                 binding.circularProgressIndicator.setIndicatorColor(ContextCompat.getColor(itemView.context, R.color.green))
             } else {
                 binding.circularProgressIndicator.setIndicatorColor(ContextCompat.getColor(itemView.context, R.color.red))
             }
 
-            binding.circularProgressIndicator.progress = item.percent_appropriate.toString().replace("%", "").toInt()
-            binding.tvPercentAppropriate.text = item.percent_appropriate.toString()
+            binding.circularProgressIndicator.progress = item.percentAppropriate.toString().replace("%", "").toInt()
+            binding.tvPercentAppropriate.text = item.percentAppropriate.toString()
 
             binding.btnDownload.setOnClickListener {
-                listenerClickAtItem?.onClick(item.resume_link)
+                listenerClickAtItem?.onClick(item.resumeLink)
             }
         }
     }

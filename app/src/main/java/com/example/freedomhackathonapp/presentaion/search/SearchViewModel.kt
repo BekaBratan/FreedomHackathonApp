@@ -7,14 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.example.freedomhackathonapp.data.ApiService
 import com.example.freedomhackathonapp.data.ServiceBuilder
 import com.example.freedomhackathonapp.domain.HelloWorldResponse
+import com.example.freedomhackathonapp.domain.NewSearchResponse
 import com.example.freedomhackathonapp.domain.SearchResponse
 import com.example.freedomhackathonapp.domain.VacancyResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SearchViewModel: ViewModel() {
-    private val _response = MutableLiveData<SearchResponse>()
-    val response: LiveData<SearchResponse> get() = _response
+    private val _response = MutableLiveData<NewSearchResponse>()
+    val response: LiveData<NewSearchResponse> get() = _response
 
     private val _empty = MutableLiveData<HelloWorldResponse>()
     val empty: LiveData<HelloWorldResponse> get() = _empty
@@ -23,9 +24,9 @@ class SearchViewModel: ViewModel() {
     val error: LiveData<String> get() = _error
 
 
-    fun fetch(prompt: String) {
+    fun fetch(vacancy: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            runCatching { ServiceBuilder.api.search("$prompt") }
+            runCatching { ServiceBuilder.api.search("$vacancy") }
                 .onSuccess {
                     _response.postValue(it)
                 }
